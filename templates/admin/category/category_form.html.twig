@@ -1,0 +1,18 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block content %}
+    <section class="form_section">
+        {{ form_start(formCategoryView) }}
+            <div class="div_form">
+                {{ form_label(formCategoryView.title, 'Catégorie') }}
+                {{ form_widget(formCategoryView.title) }}
+            </div>
+            {{ form_widget(formCategoryView.Enregistrer) }}
+        {{ form_end(formCategoryView) }}
+    </section>
+    {% for messages in app.flashes %}
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    {% endfor %}
+{% endblock %}

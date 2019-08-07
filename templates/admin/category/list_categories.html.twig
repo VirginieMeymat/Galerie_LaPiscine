@@ -1,0 +1,23 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block content %}
+liste des categorie<br />
+    <a href="{{ path('category_form_insert') }}">Ajouter</a><br />
+    {% if display %}
+        <table class="list_table" cellspacing="0" cellpadding="0" border="1">
+            <tr>
+                <th>Titre</th>
+                <th>Action</th>
+            </tr>
+            {# boucle for qui crée un article pour chaque categorie #}
+            {% for category in categories %}
+                <tr>
+                    <td>{{ category.title }}</td>
+                    <td><a class="list_link" href="{{ path('category_form_update',{'id': category.id}) }}">Modifier</a> <a class="list_link" href="{{ path('category_delete',{'id': category.id}) }}">Supprimer</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        Aucun élément dans la base de données.
+    {% endif %}
+{% endblock %}

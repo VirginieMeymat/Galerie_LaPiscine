@@ -1,0 +1,25 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block content %}
+liste des artistes<br />
+    <a href="{{ path('artist_form_insert') }}">Ajouter</a><br />
+    {% if display %}
+        <table class="list_table" cellspacing="0" cellpadding="0" border="1">
+            <tr>
+                <th>Nom</th>
+                <th>Image</th>
+                <th>Action</th>
+            </tr>
+            {# boucle for qui crée un article pour chaque artist du array artists #}
+            {% for artist in artists %}
+                <tr>
+                    <td>{{ artist.name }}</td>
+                    <td><img src="{{ asset('assets/uploads/artists/' ~ artist.image) }}" alt="photo" height="100"></td>
+                    <td><a class="list_link" href="{{ path('artist_form_update', {'id':artist.id}) }}">Modifier</a> <a class="list_link" href="{{ path('artist_delete', {'id':artist.id}) }}">Supprimer</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        Aucun élément dans la base de données.
+    {% endif %}
+{% endblock %}

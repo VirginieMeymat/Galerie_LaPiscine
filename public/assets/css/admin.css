@@ -1,0 +1,9 @@
+.login_form{
+    width: 400px;
+    margin: 5% auto;
+}
+.div_form{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
