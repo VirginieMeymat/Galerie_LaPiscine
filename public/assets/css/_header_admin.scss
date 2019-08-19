@@ -1,0 +1,32 @@
+#header{
+  width: 100%;
+  height: 100px;
+  background-color: #212529;
+  padding: 8px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo{
+  width: 250px;
+  color: #FFFFFF;
+}
+.header_link{
+  margin-right: 20px;
+}
+.menu_burger{
+  width: 30px;
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+.burger_line{
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  margin-bottom: 6px;
+}
+

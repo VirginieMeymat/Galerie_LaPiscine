@@ -21,6 +21,21 @@ class Category
      */
     private $title;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Artist", mappedBy="category")
+     */
+    private $artists;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Work", mappedBy="category")
+     */
+    private $works;
+
+    public function __construct()
+    {
+        $this->artists = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -37,4 +52,22 @@ class Category
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getArtists()
+    {
+        return $this->artists;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWorks()
+    {
+        return $this->works;
+    }
+
+
 }

@@ -1,0 +1,53 @@
+{% extends 'admin/base_admin.html.twig' %}
+{#{% form_theme formWorkView 'bootstrap_4_layout.html.twig' %}#}
+
+{% block content %}
+    <section class="form_section">
+        <p class="h3 list_title">Oeuvre d'art</p>
+        <div class="form_block">
+            {{ form_start(formWorkView) }}
+                <div class="form-group row">
+                    {{ form_label(formWorkView.category, 'Catégorie', {'label_attr': {'class': 'col-sm-2 col-form-label'}}) }}
+                    <div class="col-sm-10">
+                        {{ form_widget(formWorkView.category) }}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    {{ form_label(formWorkView.artist, 'Artiste', {'label_attr': {'class': 'col-sm-2 col-form-label'}}) }}
+                    <div class="col-sm-10">
+                        {{ form_widget(formWorkView.artist) }}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    {{ form_label(formWorkView.title, 'Titre', {'label_attr': {'class': 'col-sm-2 col-form-label'}}) }}
+                    <div class="col-sm-10">
+                        {{ form_widget(formWorkView.title) }}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    {{ form_label(formWorkView.description, 'Description', {'label_attr': {'class': 'col-sm-2 col-form-label'}}) }}
+                    <div class="col-sm-10">
+                        {{ form_widget(formWorkView.description) }}
+                    </div>
+                </div>
+                {% if work.image is defined %}
+                    <img src="{{ asset('assets/uploads/works/' ~ work.image) }}" alt="image" height="60">
+                {% endif %}
+                <div class="form-group row">
+                    {#{{ form_label(formWorkView.description, 'Image', {'label_attr': {'class': 'col-sm-2 col-form-label'}}) }}#}
+                    <div class="col-sm-10">
+                        {{ form_row(formWorkView.image, {'attr': {'class': 'col-sm-2 col-form-label'}}) }}
+                    </div>
+                </div>
+                {{ form_widget(formWorkView.Enregistrer) }}
+            {{ form_end(formWorkView) }}
+        </div>
+    </section>
+
+    {# on affiche les messages flash dans le cas d'une insertion #}
+    {% for messages in app.flashes %}
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    {% endfor %}
+{% endblock %}

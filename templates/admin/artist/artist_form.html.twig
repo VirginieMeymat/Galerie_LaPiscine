@@ -4,6 +4,10 @@
     <section class="form_section">
         {{ form_start(formArtistView) }}
             <div class="div_form">
+                {{ form_label(formArtistView.category, 'Catégorie') }}
+                {{ form_widget(formArtistView.category) }}
+            </div>
+            <div class="div_form">
                 {{ form_label(formArtistView.name, 'Nom de l\'artiste') }}
                 {{ form_widget(formArtistView.name) }}
             </div>
@@ -11,14 +15,21 @@
                 {{ form_label(formArtistView.biography, 'Biographie') }}
                 {{ form_widget(formArtistView.biography) }}
             </div>
+            {# cas d'un update #}
+            {# si artist.image est définie et qu'elle a une valeur, j'affiche l'image #}
+            {% if artist.image is defined %}
+                {% if artist.image %}
+                    <img src="{{ asset('assets/uploads/artists/' ~ artist.image) }}" alt="photo" height="60">
+                {% endif %}
+            {% endif %}
             <div class="div_form">
                 {{ form_row(formArtistView.image) }}
             </div>
-
-
         {{ form_widget(formArtistView.Enregistrer) }}
         {{ form_end(formArtistView) }}
     </section>
+
+    {# on affiche les messages flash dans le cas d'une insertion #}
     {% for messages in app.flashes %}
         {% for message in messages %}
             {{ message }}

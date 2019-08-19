@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <section class="list_content">
+        <p class="h3 list_title">Liste des oeuvres</p>
+        {% if display %}
+                {# boucle for qui crée une ligne pour chaque work du array works #}
+                {% for work in works %}
+                    {{ work.title }}
+                    {{ work.artist.name }}
+                    {{ work.category.title }}
+                    <img src="{{ asset('assets/uploads/works/' ~ work.image) }}" alt="image" height="60">
+                    <br>
+                {% endfor %}
+
+            {{ knp_pagination_render(works) }}
+
+        {% else %}
+            Aucun élément dans la base de données.
+        {% endif %}
+    </section>
+{% endblock %}

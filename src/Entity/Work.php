@@ -31,6 +31,16 @@ class Work
      */
     private $image;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Artist", inversedBy="works")
+     */
+    private $artist;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="works")
+     */
+    private $category;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -71,4 +81,38 @@ class Work
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getArtist()
+    {
+        return $this->artist;
+    }
+
+    /**
+     * @param mixed $artist
+     */
+    public function setArtist($artist): void
+    {
+        $this->artist = $artist;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param mixed $category
+     */
+    public function setCategory($category): void
+    {
+        $this->category = $category;
+    }
+
+
 }

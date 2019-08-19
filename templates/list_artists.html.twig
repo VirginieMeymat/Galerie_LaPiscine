@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <section class="list_content">
+        <p class="h3 list_title">Liste des artistes</p>
+        {% if display %}
+
+                    {# boucle for qui crée une ligne pour chaque artist du array artists #}
+                    {% for artist in artists %}
+                        {{ artist.name }}
+                        {#{{ artist.category.title }}#}
+                        <img src="{{ asset('assets/uploads/artists/' ~ artist.image) }}" alt="photo" height="60">
+                        <br>
+                        {% for work in artist.works %}
+                            {{ work.title }}
+                            <img src="{{ asset('assets/uploads/works/' ~ work.image) }}" alt="photo" height="60">
+                        {% endfor %}
+                    {% endfor %}
+
+            <div class="pagination">
+                {{ knp_pagination_render(artists) }}
+            </div>
+        {% else %}
+            Aucun élément dans la base de données.
+        {% endif %}
+    </section>
+{% endblock %}

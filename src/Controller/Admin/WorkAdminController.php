@@ -4,9 +4,9 @@
 namespace App\Controller\Admin;
 
 
-use App\Entity\Artist;
-use App\Form\ArtistType;
-use App\Repository\ArtistRepository;
+use App\Entity\Work;
+use App\Form\WorkType;
+use App\Repository\WorkRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -14,17 +14,17 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ArtistAdminController extends AbstractController
+class WorkAdminController extends AbstractController
 {
     /**
-     * @Route("/admin/artist/insert", name="artist_form_insert")
+     * @Route("/admin/work/insert", name="work_form_insert")
      */
-    public function artistFormInsert(Request $request, EntityManagerInterface $entityManager)
+    public function workFormInsert(Request $request, EntityManagerInterface $entityManager)
     {
-        // je crée une instance de la classe artist
-        $artist = new Artist();
-        // je crée un nouveau formulaire pour l'entité artist
-        $form = $this->createForm(ArtistType::class, $artist);
+        // je crée une instance de la classe work
+        $work = new Work();
+        // je crée un nouveau formulaire pour l'entité work
+        $form = $this->createForm(WorkType::class, $work);
 
         if ($request->isMethod('post')) {
             // je récupère les données du form
@@ -47,53 +47,52 @@ class ArtistAdminController extends AbstractController
                     $newFilename = $safeFilename.'.'.$file->getClientOriginalExtension();
 
                     // Bouge le fichier dans le répertoire où sont stockés les images
-                    // artist_directory est paramétré dans config/services.yaml
+                    // work_directory est paramétré dans config/services.yaml
                     try {
                         $file->move(
-                            $this->getParameter('artist_directory'),
+                            $this->getParameter('work_directory'),
                             $newFilename
                         );
                     } catch (FileException $e) {
                         // ... handle exception if something happens during file upload
                     }
-                    $artist->setImage($newFilename);
+                    $work->setImage($newFilename);
                 }
                 // on enregistre les modifications
-                $entityManager->persist($artist);
+                $entityManager->persist($work);
                 // on envoie la requête vers la bdd
                 $entityManager->flush();
 
                 // message flash de validation
                 $this->addFlash('Success', 'L\'enregistrement a bien été effectué');
-                return $this->redirectToRoute('artist_form_insert');
+                return $this->redirectToRoute('work_form_insert');
             } else {
                 $this->addFlash('Fail', 'L\'enregistrement n\'a pas été effectué. Veuillez réessayer.');
             }
         }
-        return $this->render('admin/artist/artist_form.html.twig',
+        return $this->render('admin/work/work_form.html.twig',
             [
-                'formArtistView' => $form->createView()
+                'formWorkView' => $form->createView()
             ]
         );
     }
 
     /**
-     * @Route("/admin/artist/update/{id}", name="artist_form_update")
+     * @Route("/admin/work/update/{id}", name="work_form_update")
      */
-    public function artistFormUpdate($id, ArtistRepository $artistRepository, Request $request, EntityManagerInterface $entityManager)
+    public function workFormUpdate($id, WorkRepository $workRepository, Request $request, EntityManagerInterface $entityManager)
     {
-        // je crée une instance de la classe Artist
-        $artist = $artistRepository->find($id);
-        // je crée un nouveau formulaire pour l'entité Artist
-        $form = $this->createForm(ArtistType::class, $artist);
-        // je crée une vue du formulaire
+        // je crée une instance de la classe work
+        $work = $workRepository->find($id);
+        // je crée un nouveau formulaire pour l'entité work
+        $form = $this->createForm(WorkType::class, $work);
 
         if ($request->isMethod('post')) {
             // je récupère les données du form
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
-                /** @var UploaderFile $file */
+                /** @var UploadedFile $file */
                 $file = $form['image']->getData();
 
                 if ($file) {
@@ -105,31 +104,32 @@ class ArtistAdminController extends AbstractController
                     $newFilename = $safeFilename.'.'.$file->getClientOriginalExtension();
 
                     // Bouge le fichier dans le répertoire où sont stockés les images
-                    // artist_directory est paramétré dans config/services.yaml
+                    // work_directory est paramétré dans config/services.yaml
                     try {
                         $file->move(
-                            $this->getParameter('artist_directory'),
+                            $this->getParameter('work_directory'),
                             $newFilename
                         );
                     } catch (FileException $e) {
                         // ... handle exception if something happens during file upload
                     }
-                    $artist->setImage($newFilename);
+                    $work->setImage($newFilename);
                 }
                 // on enregistre les modifications
-                $entityManager->persist($artist);
+                $entityManager->persist($work);
                 // on envoie la requête vers la bdd
                 $entityManager->flush();
 
-                return $this->redirectToRoute('list_artists');
+                return $this->redirectToRoute('list_works');
             } else {
                 $this->addFlash('Fail', 'L\'enregistrement n\'a pas été effectué. Veuillez réessayer.');
             }
         } else {
-            return $this->render('admin/artist/artist_form.html.twig',
+            return $this->render('admin/work/work_form.html.twig',
                 [
-                    'formArtistView' => $form->createView(),
-                    'artist' => $artist
+                    // je crée une vue du formulaire et la passe en variable pour le fichier twig
+                    'formWorkView' => $form->createView(),
+                    'work' => $work
                 ]
             );
         }
@@ -137,20 +137,20 @@ class ArtistAdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/artist/delete/{id}", name="artist_delete")
+     * @Route("/admin/work/delete/{id}", name="work_delete")
      *
-     * supprime un enregistrement dans la table artist
+     * supprime un enregistrement dans la table work
      */
-    public function removeArtist($id, ArtistRepository $artistRepository, EntityManagerInterface $entityManager){
+    public function removework($id, workRepository $workRepository, EntityManagerInterface $entityManager){
         // je récupère la catégorie(entité) dont l'id est celui de la wildcard
-        $artist = $artistRepository->find($id);
+        $work = $workRepository->find($id);
 
         // Signale à Doctrine qu'on veut supprimer l'entité en argument de la base de données
-        $entityManager->remove($artist);
+        $entityManager->remove($work);
         // Met à jour la base à partir des objets signalés à Doctrine.
         // Tant que cette méthode n'est pas appellée, rien n'est modifié en base.
         $entityManager->flush();
 
-        return $this->redirectToRoute('list_artists');
+        return $this->redirectToRoute('list_works');
     }
 }

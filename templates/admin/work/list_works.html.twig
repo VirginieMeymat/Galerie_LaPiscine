@@ -1,5 +1,43 @@
 {% extends 'admin/base_admin.html.twig' %}
 
 {% block content %}
-    liste des oeuvres
+    <section class="list_content">
+        <p class="h3 list_title">Liste des oeuvres</p>
+        <div class="btn_new">
+            <a href="{{ path('work_form_insert') }}"><button type="button" class="btn btn-outline-primary">Ajouter</button></a>
+        </div>
+        {% if display %}
+            <table class="table list_table" cellspacing="0" cellpadding="0" border="0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Titre</th>
+                        <th>Artiste</th>
+                        <th>Catégorie</th>
+                        <th>Image</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {# boucle for qui crée une ligne pour chaque work du array works #}
+                {% for work in works %}
+                    {# si l'index de la boucle est impaire la ligne est grise sinon blanche#}
+                    <tr {% if loop.index is odd %}style="background-color: #FFFFFF"{% else %} style="background-color: #eeeeee"{% endif %}>
+                        <td>{{ work.id }}</td>
+                        <td><a class="text-dark" href="{{ path('work_form_update', {'id':work.id}) }}">{{ work.title }}</a></td>
+                        <td>{{ work.artist.name }}</td>
+                        <td>{{ work.category.title }}</td>
+                        <td><img src="{{ asset('assets/uploads/works/' ~ work.image) }}" alt="image" height="60"></td>
+                        <td><a class="list_link" href="{{ path('work_form_update', {'id':work.id}) }}"><img src="{{ asset('assets/img/noun_edit_25663.png') }}" alt="Editer" width="30"></a> <a class="list_link" href="{{ path('work_delete', {'id':work.id}) }}"><img src="{{ asset('assets/img/noun_Delete_2711226.png') }}" alt="Supprimer" width="30"></a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            {{ knp_pagination_render(works) }}
+
+        {% else %}
+            Aucun élément dans la base de données.
+        {% endif %}
+    </section>
 {% endblock %}

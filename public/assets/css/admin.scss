@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+}
+@import url(_header_admin.scss);
+#content{
+  width: 60%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+
+.nav{
+  background-color: #f0eb85;
+  width: 250px;
+  margin-top: 94px;
+}
+.nav_ul{
+  list-style: none;
+  margin: 15px 0;
+  padding: 0 15px;
+}
+.nav_link{
+  color: #000;
+  font-size: 16px;
+}
+.nav_link:hover{
+  color: #000;
+  text-decoration: underline;
+}
+
+.form_section{
+  width: 80%;
+}
+.form_block{
+  border: 1px solid #ced4da;
+  padding: 20px 10px;
+  margin-top: 60px;
+}
+.list_content{
+  width: 100%;
+  position: relative;
+}
+.list_table{
+   width: 100%;
+   margin-top: 60px;
+ }
+.list_title{
+  text-align: center;
+}
+.btn_new{
+  margin-top: 10px;
+  position: absolute;
+  right: 0;
+}
+.pagination{
+  justify-content: end;
+}
+.pagination span{
+  margin-left: 5px;
+}
+.pagination span a{
+
+}

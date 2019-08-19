@@ -1,23 +1,31 @@
 {% extends 'admin/base_admin.html.twig' %}
 
 {% block content %}
-liste des categorie<br />
-    <a href="{{ path('category_form_insert') }}">Ajouter</a><br />
+    <section class="list_content">
+        <p class="h3 list_title">Liste des catégories</p>
+        <div class="btn_new">
+            <a href="{{ path('category_form_insert') }}"><button type="button" class="btn btn-outline-primary">Ajouter</button></a>
+        </div>
     {% if display %}
-        <table class="list_table" cellspacing="0" cellpadding="0" border="1">
-            <tr>
-                <th>Titre</th>
-                <th>Action</th>
-            </tr>
-            {# boucle for qui crée un article pour chaque categorie #}
-            {% for category in categories %}
+        <table class="table list_table" cellspacing="0" cellpadding="0" border="0">
+            <thead class="thead-dark">
                 <tr>
-                    <td>{{ category.title }}</td>
-                    <td><a class="list_link" href="{{ path('category_form_update',{'id': category.id}) }}">Modifier</a> <a class="list_link" href="{{ path('category_delete',{'id': category.id}) }}">Supprimer</a></td>
+                    <th>Titre</th>
+                    <th>Action</th>
                 </tr>
-            {% endfor %}
+            </thead>
+            <tbody>
+                {# boucle for qui crée un article pour chaque categorie #}
+                {% for category in categories %}
+                    <tr>
+                        <td>{{ category.title }}</td>
+                        <td width="30%"><a class="list_link" href="{{ path('category_form_update',{'id': category.id}) }}">Modifier</a> <a class="list_link" href="{{ path('category_delete',{'id': category.id}) }}">Supprimer</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
         </table>
     {% else %}
         Aucun élément dans la base de données.
     {% endif %}
+    </section>
 {% endblock %}

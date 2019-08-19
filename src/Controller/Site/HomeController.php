@@ -1,31 +1,29 @@
 <?php
 
 
-namespace App\Controller\Admin;
+namespace App\Controller\Site;
 
 
 use App\Repository\ArtistRepository;
-use App\Repository\CategoryRepository;
 use App\Repository\WorkRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AdminController extends AbstractController
+class HomeController extends AbstractController
 {
     /**
-     * @Route("/admin", name="admin_home")
+     * @Route("/", name="home_page")
      */
-    public function adminHome()
-    {
-        return $this -> render('admin/home.html.twig');
+    public function homePage(){
+        return $this -> render('home.html.twig');
     }
 
     /**
-     * @Route("/admin/works", name="list_works")
+     * @Route("/works", name="get_works")
      */
-    public function listWorks(WorkRepository $workRepository, Request $request, PaginatorInterface $paginator)
+    public function getWorks(WorkRepository $workRepository, Request $request, PaginatorInterface $paginator)
     {
         // récupère toutes les données de la table artist
         $workQuery = $workRepository->createQueryBuilder('w')
@@ -37,14 +35,14 @@ class AdminController extends AbstractController
             // Definie le paramètre page
             $request->query->getInt('page', 1),
             // Nombre d'éléments par page
-            2
+            20
         );
         if(empty($works)){
             $display = false;
         } else {
             $display = true;
         }
-        return $this -> render('admin/work/list_works.html.twig',
+        return $this -> render('list_works.html.twig',
             [
                 'display' => $display,
                 'works' => $works
@@ -53,9 +51,9 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/artists", name="list_artists")
+     * @Route("/artists", name="get_artists")
      */
-    public function listArtists(ArtistRepository $artistRepository, Request $request, PaginatorInterface $paginator)
+    public function getArtists(ArtistRepository $artistRepository, Request $request, PaginatorInterface $paginator)
     {
         // récupère toutes les données de la table artist
         $artistsQuery = $artistRepository->createQueryBuilder('c')
@@ -74,31 +72,10 @@ class AdminController extends AbstractController
         } else {
             $display = true;
         }
-        return $this -> render('admin/artist/list_artists.html.twig',
+        return $this -> render('list_artists.html.twig',
             [
                 'display' => $display,
                 'artists' => $artists
-            ]
-        );
-    }
-
-    /**
-     * @Route("/admin/categories", name="list_categories")
-     */
-    public function listCategories(CategoryRepository $categoryRepository)
-    {
-        // j'utilise la méthode findAll du repository pour récupérer toutes les Categories de la bdd
-        $categories = $categoryRepository->findAll();
-
-        if(empty($categories)){
-            $display = false;
-        } else {
-            $display = true;
-        }
-        return $this -> render('admin/category/list_categories.html.twig',
-            [
-                'display' => $display,
-                'categories' => $categories
             ]
         );
     }
