@@ -1,0 +1,46 @@
+/*** Footer ***/
+
+h4 {
+  color: $txt_red;
+  font-size: 22px;
+}
+.footer {
+  background-color: $bg_base;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 30px 0 20px;
+  width: 100%;
+  /*position: absolute;
+  left: 0;
+  bottom: 0;*/
+}
+/* div pour chaque rubrique */
+.info {
+  color: #FFFFFF;
+}
+.info ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+.info li {
+  font-size: 14px;
+  margin-bottom: 6px;
+  display: flex;
+}
+/* div contenant les icones d'info sur la galerie */
+.icon {
+  width: 24px;
+  display: block;
+}
+
+.social {
+  display: flex;
+  justify-content: space-around;
+}
+.social_link {
+  display: none;
+}
+.social i {
+  font-size: 1.5em;
+}

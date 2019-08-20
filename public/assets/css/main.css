@@ -1,5 +1,177 @@
-@import url(_header.scss);
 body {
   font-family: 'Quicksand', sans-serif; }
+
+/*** Header ***/
+.header {
+  width: 100%;
+  height: 150px;
+  background-color: #212529;
+  padding-top: 8px;
+  padding-left: 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+
+.logo {
+  width: 300px;
+  font-family: 'Zhi Mang Xing', cursive;
+  font-size: 52px;
+  font-style: italic;
+  color: #FFFFFF; }
+
+.nav {
+  width: 35%;
+  margin-right: 10%; }
+
+.header_nav_ul {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  margin: 15px 0;
+  padding: 0 15px; }
+
+.header_link {
+  color: #fff;
+  font-size: 17px; }
+
+.header_link:hover {
+  color: #FFFFFF;
+  text-decoration: underline; }
+
+.menu_burger {
+  width: 30px;
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer; }
+
+.burger_line {
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  margin-bottom: 6px; }
+
+@media screen and (max-width: 640px) {
+  .logo {
+    width: 55%; }
+
+  .nav {
+    display: none; }
+
+  .header_nav_ul {
+    flex-direction: column;
+    line-height: 170%; }
+
+  .menu_burger {
+    display: block; }
+
+  .menu_burger:hover + .nav {
+    display: block; }
+
+  .nav:hover {
+    display: block; } }
+main {
+  margin: 20px 0; }
+
+#carouselHome {
+  width: 100%;
+  height: 300px;
+  background-color: gray; }
+
+.home {
+  width: 70%;
+  margin: 0 auto; }
+
+.list_content {
+  width: 60%;
+  margin: 0 auto; }
+
+.card_artist, .works_artist {
+  width: 60%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; }
+
+.card_artist {
+  width: 50%; }
+
+.work_article {
+  width: 33%;
+  height: 320px;
+  text-align: center; }
+
+.image_artist {
+  width: 250px;
+  height: 250px;
+  overflow: hidden;
+  position: relative; }
+
+.info_artist {
+  width: 70%; }
+
+.image_work {
+  height: 90%; }
+
+img {
+  height: 100%; }
+
+.legal_notice {
+  width: 70%;
+  margin: 0 auto; }
+
+h2 {
+  font-size: 28px; }
+
+h3 {
+  font-size: 20px;
+  color: #e00000;
+  margin: 15px 0 5px; }
+
+/*** Footer ***/
+h4 {
+  color: #e00000;
+  font-size: 22px; }
+
+.footer {
+  background-color: #212529;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 30px 0 20px;
+  width: 100%;
+  /*position: absolute;
+  left: 0;
+  bottom: 0;*/ }
+
+/* div pour chaque rubrique */
+.info {
+  color: #FFFFFF; }
+
+.info ul {
+  list-style-type: none;
+  padding-left: 0; }
+
+.info li {
+  font-size: 14px;
+  margin-bottom: 6px;
+  display: flex; }
+
+/* div contenant les icones d'info sur la galerie */
+.icon {
+  width: 24px;
+  display: block; }
+
+.social {
+  display: flex;
+  justify-content: space-around; }
+
+.social_link {
+  display: none; }
+
+.social i {
+  font-size: 1.5em; }
 
 /*# sourceMappingURL=main.css.map */

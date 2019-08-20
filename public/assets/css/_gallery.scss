@@ -1,0 +1,34 @@
+.list_content {
+  width: 60%;
+  margin: 0 auto;
+}
+.card_artist, .works_artist {
+  width: 60%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.card_artist {
+  width: 50%;
+}
+.work_article {
+  width: 33%;
+  height: 320px;
+  text-align: center;
+}
+.image_artist {
+  width: 250px;
+  height: 250px;
+  overflow: hidden;
+  position: relative;
+}
+.info_artist {
+  width: 70%;
+}
+.image_work {
+  height: 90%;
+}
+img {
+  height: 100%;
+}

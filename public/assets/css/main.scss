@@ -1,4 +1,10 @@
+$bg_base: #212529;
+$txt_red: #e00000;
 body{
   font-family: 'Quicksand', sans-serif;
 }
-@import url(_header.scss);
+@import '_header';
+@import '_home';
+@import '_gallery';
+@import '_legal_notice';
+@import '_footer';

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block title %}<title>Artistes - Galerie LaPiscine</title>{% endblock %}
+{% block content %}
+    <section class="list_content">
+        <p class="h3 list_title">Liste des artistes</p>
+        {% if display %}
+            <section class="works_artist">
+                {# boucle for qui crée une ligne pour chaque artist du array artists #}
+                {% for artist in artists %}
+                    <article class="work_article">
+                        <a href="{{ path('card_artist', {'id':artist.id}) }}">
+                            <h4>{{ artist.name }}</h4>
+                            <div class="image_work">
+                                <img src="{{ asset('assets/uploads/artists/' ~ artist.image) }}" alt="photo">
+                            </div>
+                        </a>
+                        <br>
+                    </article>
+                {% endfor %}
+
+                <div class="pagination">
+                    {{ knp_pagination_render(artists) }}
+                </div>
+            </section>
+        {% else %}
+            Aucun élément dans la base de données.
+        {% endif %}
+    </section>
+{% endblock %}

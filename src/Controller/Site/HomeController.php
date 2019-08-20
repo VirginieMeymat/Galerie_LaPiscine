@@ -17,7 +17,7 @@ class HomeController extends AbstractController
      * @Route("/", name="home_page")
      */
     public function homePage(){
-        return $this -> render('home.html.twig');
+        return $this -> render('site/home.html.twig');
     }
 
     /**
@@ -42,7 +42,7 @@ class HomeController extends AbstractController
         } else {
             $display = true;
         }
-        return $this -> render('list_works.html.twig',
+        return $this -> render('site/list_works.html.twig',
             [
                 'display' => $display,
                 'works' => $works
@@ -72,11 +72,33 @@ class HomeController extends AbstractController
         } else {
             $display = true;
         }
-        return $this -> render('list_artists.html.twig',
+        return $this -> render('site/list_artists.html.twig',
             [
                 'display' => $display,
                 'artists' => $artists
             ]
         );
+    }
+
+    /**
+     * @Route("/artists/{id}", name="card_artist")
+     */
+    public function cardArtist($id, ArtistRepository $artistRepository)
+    {
+       $artist = $artistRepository->find($id);
+        return $this -> render('site/card_artist.html.twig',
+            [
+                'artist' => $artist
+            ]
+        );
+    }
+
+    /**
+     * @Route("/mentions-legales", name="legal_notice")
+     */
+
+    public function legalNotice()
+    {
+        return $this -> render('site/legal_notice.html.twig');
     }
 }

@@ -37,7 +37,7 @@ class AdminController extends AbstractController
             // Definie le paramètre page
             $request->query->getInt('page', 1),
             // Nombre d'éléments par page
-            2
+            5
         );
         if(empty($works)){
             $display = false;
