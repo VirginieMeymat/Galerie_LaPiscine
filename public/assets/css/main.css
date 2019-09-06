@@ -1,6 +1,27 @@
 body {
   font-family: 'Quicksand', sans-serif; }
 
+h1 {
+  font-size: 2.2em;
+  text-align: center;
+  margin-bottom: 60px; }
+
+h2 {
+  font-size: 28px; }
+
+h3 {
+  font-size: 20px;
+  color: #e00000;
+  margin: 15px 0 5px; }
+
+h4 {
+  color: #e00000;
+  font-size: 22px; }
+
+a:hover {
+  color: inherit;
+  text-decoration: none; }
+
 /*** Header ***/
 .header {
   width: 100%;
@@ -20,8 +41,8 @@ body {
   color: #FFFFFF; }
 
 .nav {
-  width: 35%;
-  margin-right: 10%; }
+  width: 30%;
+  margin-right: 5%; }
 
 .header_nav_ul {
   width: 100%;
@@ -72,13 +93,14 @@ body {
 
   .nav:hover {
     display: block; } }
-main {
-  margin: 20px 0; }
-
 #carouselHome {
   width: 100%;
   height: 300px;
-  background-color: gray; }
+  background-color: gray;
+  overflow: hidden; }
+
+#carouselHome img {
+  width: 100%; }
 
 .home {
   width: 70%;
@@ -88,53 +110,102 @@ main {
   width: 60%;
   margin: 0 auto; }
 
-.card_artist, .works_artist {
+.card_artist, .works_artist, .list_artists, .card_work {
   width: 60%;
   margin: 20px auto;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap; }
 
+.card_work {
+  width: 50%;
+  justify-content: left; }
+
+.list_artists {
+  width: 100%; }
+
 .card_artist {
-  width: 50%; }
+  width: 50%;
+  margin-bottom: 150px; }
 
 .work_article {
-  width: 33%;
-  height: 320px;
-  text-align: center; }
-
-.image_artist {
-  width: 250px;
-  height: 250px;
-  overflow: hidden;
-  position: relative; }
+  text-align: center;
+  margin-bottom: 40px; }
 
 .info_artist {
   width: 70%; }
 
-.image_work {
-  height: 90%; }
+.info_work i {
+  font-size: 1.6em; }
 
-img {
-  height: 100%; }
+.info_work a {
+  color: #666666; }
+
+.info_work a:hover {
+  color: #e00000; }
+
+.image_artist {
+  width: 220px;
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 50%; }
+
+.image_work {
+  width: 320px;
+  height: 320px;
+  overflow: hidden;
+  position: relative; }
+
+.image_card_work {
+  width: 460px;
+  height: 460px;
+  overflow: hidden;
+  position: relative; }
+
+.image_artist img, .image_work img {
+  height: 100%;
+  /* centre l'image dans la div qui est plus petite */
+  position: absolute;
+  margin: auto;
+  top: -600px;
+  left: -600px;
+  right: -600px;
+  bottom: -600px; }
+
+.image_card_work img {
+  max-width: 100%;
+  max-height: 100%;
+  /* centre l'image dans la div qui est plus petite */
+  position: absolute;
+  margin: auto;
+  top: -600px;
+  left: -600px;
+  right: -600px;
+  bottom: -600px; }
+
+.lien_contact {
+  padding: 8px;
+  border: 1px solid #dedede; }
+
+.lien_contact:hover, .lien_contact:hover a {
+  background-color: #666666;
+  color: #FFFFFF;
+  cursor: pointer; }
 
 .legal_notice {
   width: 70%;
   margin: 0 auto; }
 
-h2 {
-  font-size: 28px; }
+/*** Contact ***/
+.form_contact {
+  width: 50%;
+  margin: 0 auto; }
 
-h3 {
-  font-size: 20px;
-  color: #e00000;
-  margin: 15px 0 5px; }
-
+@media screen and (max-width: 560px) {
+  .form_contact {
+    width: 80%; } }
 /*** Footer ***/
-h4 {
-  color: #e00000;
-  font-size: 22px; }
-
 .footer {
   background-color: #212529;
   display: flex;
@@ -149,6 +220,10 @@ h4 {
 /* div pour chaque rubrique */
 .info {
   color: #FFFFFF; }
+
+.info h4 {
+  text-align: center;
+  margin-bottom: 15px; }
 
 .info ul {
   list-style-type: none;

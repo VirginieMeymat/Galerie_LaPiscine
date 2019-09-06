@@ -4,8 +4,12 @@
 namespace App\Controller\Site;
 
 
+use App\Entity\Contact;
+use App\Form\ContactType;
+use App\Notification\ContactNotification;
 use App\Repository\ArtistRepository;
 use App\Repository\WorkRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,28 +27,12 @@ class HomeController extends AbstractController
     /**
      * @Route("/works", name="get_works")
      */
-    public function getWorks(WorkRepository $workRepository, Request $request, PaginatorInterface $paginator)
+    public function getWorks(WorkRepository $workRepository)
     {
-        // récupère toutes les données de la table artist
-        $workQuery = $workRepository->createQueryBuilder('w')
-            ->getQuery();
-        // Paginer les résultats de la requête
-        $works = $paginator->paginate(
-        // Doctrine Query, not results
-            $workQuery,
-            // Definie le paramètre page
-            $request->query->getInt('page', 1),
-            // Nombre d'éléments par page
-            20
-        );
-        if(empty($works)){
-            $display = false;
-        } else {
-            $display = true;
-        }
+        // récupère toutes les données de la table work
+        $works = $workRepository->findAll();
         return $this -> render('site/list_works.html.twig',
             [
-                'display' => $display,
                 'works' => $works
             ]
         );
@@ -53,28 +41,12 @@ class HomeController extends AbstractController
     /**
      * @Route("/artists", name="get_artists")
      */
-    public function getArtists(ArtistRepository $artistRepository, Request $request, PaginatorInterface $paginator)
+    public function getArtists(ArtistRepository $artistRepository)
     {
-        // récupère toutes les données de la table artist
-        $artistsQuery = $artistRepository->createQueryBuilder('c')
-            ->getQuery();
-        // Paginer les résultats de la requête
-        $artists = $paginator->paginate(
-        // Doctrine Query, not results
-            $artistsQuery,
-            // Define the page parameter
-            $request->query->getInt('page', 1),
-            // Items per page
-            10
-        );
-        if(empty($artists)){
-            $display = false;
-        } else {
-            $display = true;
-        }
+        // recherche tous les artistes [], order by 'name'
+        $artists = $artistRepository -> findBy([],['name' => 'ASC']);
         return $this -> render('site/list_artists.html.twig',
             [
-                'display' => $display,
                 'artists' => $artists
             ]
         );
@@ -94,11 +66,64 @@ class HomeController extends AbstractController
     }
 
     /**
+     * @Route("/works/{id}", name="card_work")
+     */
+    public function cardWork($id, WorkRepository $workRepository)
+    {
+        $work = $workRepository->find($id);
+        return $this -> render('site/card_work.html.twig',
+            [
+                'work' => $work
+            ]
+        );
+    }
+
+    /**
      * @Route("/mentions-legales", name="legal_notice")
      */
-
     public function legalNotice()
     {
         return $this -> render('site/legal_notice.html.twig');
+    }
+
+    /**
+     * @Route("/contact", name="contact_form")
+     */
+    public function contactForm(Request $request, \Swift_Mailer $mailer)
+    {
+        // je crée un nouveau contact
+        $contact = new Contact();
+        // je crée mon formulaire qui correspond à mon ContactType
+        // et je lui passe en paramètre le contact
+        $form = $this->createForm(ContactType::class, $contact);
+
+        if ($request->isMethod('post')) {
+            // je récupère les données du form
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $message = (new \Swift_Message('Nouveau message'))
+                    ->setFrom($contact->getEmail())
+                    ->setTo('virginie.meymat@lapiscine.pro')
+                    ->setBody(
+                        $this->renderView(
+                            'site/_mail.html.twig', [
+                                'prenom' => $contact->getFirstname(),
+                                'nom' => $contact->getLastname(),
+                                'message' => $contact->getMessage()
+                            ]
+                        ),
+                        'text/html'
+                    );
+
+                $mailer->send($message);
+                $this->addFlash('success', 'Votre demande a bien été envoyée.');
+                return $this->redirectToRoute('contact_form');
+            }
+        }
+
+        return $this->render('site/contact.html.twig', [
+            'formContact' => $form->createView()
+        ]
+        );
     }
 }

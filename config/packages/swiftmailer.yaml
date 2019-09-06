@@ -1,3 +1,7 @@
 swiftmailer:
-    url: '%env(MAILER_URL)%'
-    spool: { type: 'memory' }
+    encryption: ssl
+    auth_mode: login
+    host: smtp.gmail.com
+    username: virginie.meymat@lapiscine.pro
+    password: lapiscine33
+    transport: gmail

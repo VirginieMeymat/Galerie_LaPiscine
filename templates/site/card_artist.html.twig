@@ -5,23 +5,23 @@
 {% block content %}
     <section class="card_artist">
         <div class="image_artist">
-            <img class="img_" src="{{ asset('assets/uploads/artists/' ~ artist.image) }}" alt="photo">
+            <img src="{{ asset('assets/uploads/artists/' ~ artist.image) }}" alt="photo">
         </div>
         <div class="info_artist">
             {{ artist.name }}<br>
             {{ artist.biography }}
         </div>
-
     </section>
     <section class="works_artist">
         {% for work in artist.works %}
-            <article class="work_article">
-                {{ work.title }}
-                <div class="image_work">
-                    <img src="{{ asset('assets/uploads/works/' ~ work.image) }}" alt="photo">
-                </div>
-
-            </article>
+            <a href="{{ path('card_work', {'id':work.id}) }}">
+                <article class="work_article">
+                    {{ work.title }}
+                    <div class="image_work">
+                        <img src="{{ asset('assets/uploads/works/' ~ work.image) }}" alt="photo">
+                    </div>
+                </article>
+            </a>
         {% endfor %}
     </section>
 {% endblock %}

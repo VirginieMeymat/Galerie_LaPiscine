@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <section class="form_contact">
+        <p class="h3">Contact</p>
+        <div class="message">
+            {% for messages in app.flashes %}
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            {% endfor %}
+        </div>
+
+        <div class="form_div">
+            {{ form_start(formContact) }}
+                {{ form_label(formContact.firstname, 'Prénom *') }}
+                {{ form_widget(formContact.firstname) }}
+                {{ form_label(formContact.lastname, 'Nom *') }}
+                {{ form_widget(formContact.lastname) }}
+                {{ form_label(formContact.phone, 'Téléphone *') }}
+                {{ form_widget(formContact.phone) }}
+                {{ form_label(formContact.email, 'Email *') }}
+                {{ form_widget(formContact.email) }}
+                {{ form_label(formContact.message, 'Message *') }}
+                {{ form_widget(formContact.message) }}
+                <div class="form group">
+                    <button class="btn btn-primary">Envoyer</button>
+                </div>
+            {{ form_end(formContact) }}
+        </div>
+    </section>
+    <section class="coordonnees">
+
+    </section>
+{% endblock %}

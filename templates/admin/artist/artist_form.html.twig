@@ -23,7 +23,8 @@
                 {% endif %}
             {% endif %}
             <div class="div_form">
-                {{ form_row(formArtistView.image) }}
+                {{ form_label(formArtistView.image, 'Image') }}
+                {{ form_widget(formArtistView.image) }}
             </div>
         {{ form_widget(formArtistView.Enregistrer) }}
         {{ form_end(formArtistView) }}
