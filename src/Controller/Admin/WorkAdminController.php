@@ -31,13 +31,11 @@ class WorkAdminController extends AbstractController
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
-
                 /* upload d'un fichier */
-                /** @var UploadedFile $file */
                   $file = $form['image']->getData();
 
-                  // this condition is needed because the 'brochure' field is not required
-                  // so the PDF file must be processed only when a file is uploaded
+                  // cette condition est nécessaire car l'image n'est pas requise obligatoirement
+                  // le processus de traitement de ficher ne doit s'effectuer que lors d'un upload
                 if ($file) {
                     // récup du nom du fichier d'origine (sans l'extension)
                     $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
@@ -45,7 +43,6 @@ class WorkAdminController extends AbstractController
                     $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
                     // recrée le nom du fichier avec son extension d'origine
                     $newFilename = $safeFilename.'.'.$file->getClientOriginalExtension();
-
                     // Bouge le fichier dans le répertoire où sont stockés les images
                     // work_directory est paramétré dans config/services.yaml
                     try {
@@ -82,7 +79,7 @@ class WorkAdminController extends AbstractController
      */
     public function workFormUpdate($id, WorkRepository $workRepository, Request $request, EntityManagerInterface $entityManager)
     {
-        // je crée une instance de la classe work
+        // j'initialise ma variable avec les données de l'enregistrement $id
         $work = $workRepository->find($id);
         // je crée un nouveau formulaire pour l'entité work
         $form = $this->createForm(WorkType::class, $work);
@@ -142,7 +139,7 @@ class WorkAdminController extends AbstractController
      * supprime un enregistrement dans la table work
      */
     public function removework($id, workRepository $workRepository, EntityManagerInterface $entityManager){
-        // je récupère la catégorie(entité) dont l'id est celui de la wildcard
+        // je récupère le Work(entité) dont l'id est celui de la wildcard
         $work = $workRepository->find($id);
 
         // Signale à Doctrine qu'on veut supprimer l'entité en argument de la base de données

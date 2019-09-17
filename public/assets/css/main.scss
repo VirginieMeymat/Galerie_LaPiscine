@@ -2,6 +2,7 @@ $bg_base: #212529;
 $txt_red: #e00000;
 body{
   font-family: 'Quicksand', sans-serif;
+  box-sizing: border-box;
 }
 h1 {
   font-size: 2.2em;
@@ -27,6 +28,7 @@ a:hover {
 @import '_header';
 @import '_home';
 @import '_gallery';
+@import '_exhibition';
 @import '_legal_notice';
 @import '_contact';
 @import '_footer';

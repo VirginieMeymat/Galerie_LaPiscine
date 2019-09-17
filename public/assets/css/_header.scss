@@ -45,6 +45,25 @@
   right: 20px;
   cursor: pointer;
 }
+.menu_artists{
+  position: relative;
+}
+.menu_categories{
+  /*display:none;*/
+  position: absolute;
+  top: 30px;
+  left: -15px;
+  z-index: 10;
+  list-style: none;
+  padding: 5px 10px 5px 15px;
+  background-color: #fff;
+}
+.menu_categories a {
+  color: $bg_base;
+}
+.menu_categories a:hover {
+   text-decoration: underline;
+ }
 .burger_line{
   width: 100%;
   height: 3px;

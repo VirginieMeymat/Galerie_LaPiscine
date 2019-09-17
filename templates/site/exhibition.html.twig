@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Exposition - Galerie LaPiscine</title>{% endblock %}
+
+{% block theatre %}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript" ></script>
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/theatre.css') }}" />
+    <script type="text/javascript" src="{{ asset('assets/js/jquery.theatre.min.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+        <div id="myGallery" style="visibility: hidden; text-align: center; width: 60%; height: 400px;">
+        <a href="{{ path('card_work',{'id':'1'}) }}"><img src="{{ asset('assets/uploads/works/apresmididautomne.jpg') }}" style="height: 1px;"/></a>
+        <img src="{{ asset('assets/uploads/works/cabanetchanquee.jpg') }}" style="height: 1px;"/>
+        <img src="{{ asset('assets/uploads/works/pinmarin.png') }}" style="height: 1px;"/>
+        <img src="{{ asset('assets/uploads/works/apresmididautomne.jpg') }}" style="height: 1px;"/>
+        <img src="{{ asset('assets/uploads/works/cabanetchanquee.jpg') }}" style="height: 1px;"/>
+        <img src="{{ asset('assets/uploads/works/pinmarin.png') }}" style="height: 1px;"/>
+        <img src="{{ asset('assets/uploads/works/apresmididautomne.jpg') }}" style="height: 1px;"/>
+        <img src="{{ asset('assets/uploads/works/cabanetchanquee.jpg') }}" style="height: 1px;"/>
+        <img src="{{ asset('assets/uploads/works/pinmarin.png') }}" style="height: 1px;"/>
+        <img src="{{ asset('assets/uploads/works/apresmididautomne.jpg') }}" style="height: 1px;"/>
+        <img src="{{ asset('assets/uploads/works/cabanetchanquee.jpg') }}" style="height: 1px;"/>
+        <img src="{{ asset('assets/uploads/works/pinmarin.png') }}" style="height: 1px;"/>
+
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ asset('assets/js/theatre.js') }}"></script>
+{% endblock %}

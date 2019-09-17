@@ -21,16 +21,8 @@ class WorkType extends AbstractType
             ->add('title')
             ->add('description')
             ->add('image', FileType::class, [
-
-                // unmapped means that this field is not associated to any entity property
                 'mapped' => false,
-
-                // make it optional so you don't have to re-upload the file
-                // everytime you edit the Work details
                 'required' => false,
-
-                // unmapped fields can't define their validation using annotations
-                // in the associated entity, so you can use the PHP constraint classes
                 'constraints' => [
                     new File([
                         'maxSize' => '2048k',
@@ -38,7 +30,8 @@ class WorkType extends AbstractType
                             'image/jpeg',
                             'image/png',
                         ],
-                        'mimeTypesMessage' => 'Veuillez télécharger un fichier valide de type JPG/JPEG ou PNG',
+                        'mimeTypesMessage' => 'Veuillez télécharger un 
+                        fichier valide de type JPG/JPEG ou PNG',
                     ])
                 ],
             ])

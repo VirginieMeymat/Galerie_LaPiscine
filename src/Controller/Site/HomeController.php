@@ -6,11 +6,8 @@ namespace App\Controller\Site;
 
 use App\Entity\Contact;
 use App\Form\ContactType;
-use App\Notification\ContactNotification;
 use App\Repository\ArtistRepository;
 use App\Repository\WorkRepository;
-use Doctrine\ORM\EntityManagerInterface;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -125,5 +122,13 @@ class HomeController extends AbstractController
             'formContact' => $form->createView()
         ]
         );
+    }
+
+    /**
+     * @Route("/exposition", name="show_exhibition")
+     */
+    public function showExhibition()
+    {
+        return $this->render('site/exhibition.html.twig');
     }
 }

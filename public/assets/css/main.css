@@ -1,5 +1,6 @@
 body {
-  font-family: 'Quicksand', sans-serif; }
+  font-family: 'Quicksand', sans-serif;
+  box-sizing: border-box; }
 
 h1 {
   font-size: 2.2em;
@@ -68,6 +69,25 @@ a:hover {
   right: 20px;
   cursor: pointer; }
 
+.menu_artists {
+  position: relative; }
+
+.menu_categories {
+  /*display:none;*/
+  position: absolute;
+  top: 30px;
+  left: -15px;
+  z-index: 10;
+  list-style: none;
+  padding: 5px 10px 5px 15px;
+  background-color: #fff; }
+
+.menu_categories a {
+  color: #212529; }
+
+.menu_categories a:hover {
+  text-decoration: underline; }
+
 .burger_line {
   width: 100%;
   height: 3px;
@@ -95,16 +115,17 @@ a:hover {
     display: block; } }
 #carouselHome {
   width: 100%;
-  height: 300px;
+  height: 400px;
   background-color: gray;
   overflow: hidden; }
 
 #carouselHome img {
-  width: 100%; }
+  width: 100%;
+  margin-top: -15%; }
 
 .home {
-  width: 70%;
-  margin: 0 auto; }
+  width: 60%;
+  margin: 50px auto; }
 
 .list_content {
   width: 60%;
@@ -193,13 +214,21 @@ a:hover {
   color: #FFFFFF;
   cursor: pointer; }
 
+/* Page exposition */
+#myGallery {
+  visibility: hidden;
+  text-align: center;
+  width: 60%;
+  height: 400px;
+  margin: 40px auto; }
+
 .legal_notice {
   width: 70%;
   margin: 0 auto; }
 
 /*** Contact ***/
 .form_contact {
-  width: 50%;
+  width: 40%;
   margin: 0 auto; }
 
 @media screen and (max-width: 560px) {
@@ -212,10 +241,7 @@ a:hover {
   justify-content: space-around;
   flex-wrap: wrap;
   padding: 30px 0 20px;
-  width: 100%;
-  /*position: absolute;
-  left: 0;
-  bottom: 0;*/ }
+  width: 100%; }
 
 /* div pour chaque rubrique */
 .info {

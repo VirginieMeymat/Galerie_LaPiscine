@@ -7,7 +7,7 @@
         <div class="image_card_work">
             <img src="{{ asset('assets/uploads/works/' ~ work.image) }}" alt="{{ work.title }}">
         </div>
-        <div class="info_work">
+        <div class="info_work" style="padding-left:10px">
             {{ work.title }}<br>
             <span class="font-weight-bold">Artiste</span>: <a href="{{ path('card_artist', {'id':work.artist.id}) }}">{{ work.artist.name }}</a><br>
             {{ work.description }}<br>
