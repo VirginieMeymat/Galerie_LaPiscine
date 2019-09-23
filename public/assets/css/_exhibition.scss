@@ -3,7 +3,14 @@
 #myGallery{
   visibility: hidden;
   text-align: center;
-  width: 60%;
+  width: 70%;
   height: 400px;
   margin: 40px auto;
+}
+
+@media screen and(max-width: 480px){
+  #myGallery{
+    width: 90%;
+    height: 200px;
+  }
 }

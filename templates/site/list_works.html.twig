@@ -1,17 +1,31 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Les Oeuvres - {% endblock %}
 {% block content %}
     <section class="list_content">
-        <p class="h3 list_title">Liste des oeuvres</p>
+        <h1>Les Oeuvres</h1>
+            {# liste des catégories #}
+            {#<form action="{{ path('get_works') }}" method="get">
+                <select class="form-control form-control-sm" name="" id="">
+                    <option value="">Choisir une catégorie</option>
+                    {% for category in categories %}
+                        <option value="{{ category.id }}">{{ category.title }}</option>
+                    {% endfor %}
+                </select>
+            </form>#}
 
-            {# boucle for qui crée une ligne pour chaque work du array works #}
+            <div class="list_articles">
+            {# boucle for qui crée un article pour chaque work du array works #}
             {% for work in works %}
-                {{ work.title }}
-                {{ work.artist.name }}
-                {{ work.category.title }}
-                <img src="{{ asset('assets/uploads/works/' ~ work.image) }}" alt="image" height="60">
-                <br>
+                <article class="work_article">
+                    <a href="{{ path('card_work', {'id':work.id}) }}">
+                        <h3>{{ work.title }}</h3>
+                        <div class="image_work">
+                            <img src="{{ asset('assets/uploads/works/' ~ work.image) }}" alt="photo">
+                        </div>
+                    </a>
+                    <a class="work_link_artist" href="{{ path('card_artist', {'id':work.artist.id}) }}">{{ work.artist.name }}</a>
+                </article>
             {% endfor %}
-
+        </div>
     </section>
 {% endblock %}

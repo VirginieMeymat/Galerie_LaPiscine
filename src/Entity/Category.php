@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -34,6 +35,7 @@ class Category
     public function __construct()
     {
         $this->artists = new ArrayCollection();
+        $this->works = new ArrayCollection();
     }
 
     public function getId(): ?int

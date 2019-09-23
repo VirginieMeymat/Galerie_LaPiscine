@@ -18,7 +18,6 @@
   color: #FFFFFF;
 }
 .nav{
-  width: 30%;
   margin-right: 5%;
 }
 .header_nav_ul{
@@ -29,40 +28,45 @@
   margin: 15px 0;
   padding: 0 15px;
 }
+.menu_burger{
+   width: 30px;
+   display: none;
+   position: absolute;
+   top: 20px;
+   right: 20px;
+   cursor: pointer;
+ }
+.header_nav_ul li{
+  margin-left: 20px;
+}
 .header_link{
-  color: #fff;
+  color: #FFFFFF;
   font-size: 17px;
 }
 .header_link:hover{
-  color: #FFFFFF;
+  color: $txt_red;
   text-decoration: underline;
-}
-.menu_burger{
-  width: 30px;
-  display: none;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  cursor: pointer;
 }
 .menu_artists{
   position: relative;
 }
 .menu_categories{
-  /*display:none;*/
+  display:none;
   position: absolute;
   top: 30px;
-  left: -15px;
+  left: -18px;
   z-index: 10;
   list-style: none;
-  padding: 5px 10px 5px 15px;
+  padding: 5px 15px 5px 0;
   background-color: #fff;
+  box-shadow: 2px 2px 5px gray;
 }
 .menu_categories a {
   color: $bg_base;
 }
 .menu_categories a:hover {
-   text-decoration: underline;
+  text-decoration: underline;
+  color: $txt_red;
  }
 .burger_line{
   width: 100%;
@@ -72,15 +76,20 @@
 }
 
 @media screen and (max-width: 640px) {
+  /* gestion du menu burger */
   .logo {
-    width: 55%;
+    width: 50%;
+    font-size: 38px;
+    line-height: 100%;
   }
   .nav {
     display: none;
+    width: 200px;
+    margin-right: 0;
   }
   .header_nav_ul {
     flex-direction: column;
-    line-height: 170%;
+    line-height: 140%;
   }
   .menu_burger {
     display: block;

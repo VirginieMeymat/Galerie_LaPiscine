@@ -1,13 +1,13 @@
 {# Fiche oeuvre d'art #}
 
 {% extends 'base.html.twig' %}
-{% block title %}<title>{{ work.title }} - Galerie LaPiscine</title>{% endblock %}
+{% block title %}{{ work.title }} - {% endblock %}
 {% block content %}
     <section class="card_work">
         <div class="image_card_work">
             <img src="{{ asset('assets/uploads/works/' ~ work.image) }}" alt="{{ work.title }}">
         </div>
-        <div class="info_work" style="padding-left:10px">
+        <div class="info_work">
             {{ work.title }}<br>
             <span class="font-weight-bold">Artiste</span>: <a href="{{ path('card_artist', {'id':work.artist.id}) }}">{{ work.artist.name }}</a><br>
             {{ work.description }}<br>
@@ -15,21 +15,22 @@
             <a href="#"><i class="fa fa-twitter-square"></i></a>
             <a href="#"><i class="fa fa-google-plus-square"></i></a>
             <div class="lien_contact">
-                <a href="">Contactez-nous pour cette oeuvre</a>
+                <a href="{{ path('contact_form_work', {'work': work.title}) }}">Contactez-nous pour cette oeuvre</a>
             </div>
         </div>
     </section>
-
-    {# liste des autres oeuvres du même artiste #}
-    {#<section class="works_artist">
-        {% for work in artist.works %}
-            <article class="work_article">
-                {{ work.title }}
-                <div class="image_work">
-                    <img src="{{ asset('assets/uploads/works/' ~ work.image) }}" alt="photo">
-                </div>
-
-            </article>
-        {% endfor %}
-    </section>#}
+    <section class="list_content">
+        <div class="list_articles">
+            {% for work in work.artist.works %}
+                <article class="work_article">
+                    <a href="{{ path('card_work', {'id':work.id}) }}">
+                        <h3>{{ work.title }}</h3>
+                        <div class="image_work">
+                            <img src="{{ asset('assets/uploads/works/' ~ work.image) }}" alt="photo">
+                        </div>
+                    </a>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
 {% endblock %}

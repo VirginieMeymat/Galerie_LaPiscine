@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Contact - {% endblock %}
 {% block content %}
     <section class="form_contact">
         <p class="h3">Contact</p>
@@ -10,7 +10,12 @@
                 {% endfor %}
             {% endfor %}
         </div>
-
+        {% if work is defined %}
+            <form action="">
+                <label for="">Objet</label><br>
+                <input class="form-control" type="text" placeholder="{{ 'Message sur l\'oeuvre ' ~ work }}" readonly>
+            </form>
+        {% endif %}
         <div class="form_div">
             {{ form_start(formContact) }}
                 {{ form_label(formContact.firstname, 'Prénom *') }}
@@ -24,12 +29,12 @@
                 {{ form_label(formContact.message, 'Message *') }}
                 {{ form_widget(formContact.message) }}
                 <div class="form group">
-                    <button class="btn btn-primary">Envoyer</button>
+                    <button class="btn btn-primary bt_contact">Envoyer</button>
                 </div>
             {{ form_end(formContact) }}
         </div>
     </section>
-    <section class="coordonnees">
+    {#<section class="coordonnees">
 
-    </section>
+    </section>#}
 {% endblock %}

@@ -2,38 +2,46 @@
 
 {% block content %}
     <section class="form_section">
-        {{ form_start(formArtistView) }}
-            <div class="div_form">
-                {{ form_label(formArtistView.category, 'Catégorie') }}
-                {{ form_widget(formArtistView.category) }}
-            </div>
-            <div class="div_form">
-                {{ form_label(formArtistView.name, 'Nom de l\'artiste') }}
-                {{ form_widget(formArtistView.name) }}
-            </div>
-            <div class="div_form">
-                {{ form_label(formArtistView.biography, 'Biographie') }}
-                {{ form_widget(formArtistView.biography) }}
-            </div>
-            {# cas d'un update #}
-            {# si artist.image est définie et qu'elle a une valeur, j'affiche l'image #}
-            {% if artist.image is defined %}
-                {% if artist.image %}
-                    <img src="{{ asset('assets/uploads/artists/' ~ artist.image) }}" alt="photo" height="60">
-                {% endif %}
-            {% endif %}
-            <div class="div_form">
-                {{ form_label(formArtistView.image, 'Image') }}
-                {{ form_widget(formArtistView.image) }}
-            </div>
-        {{ form_widget(formArtistView.Enregistrer) }}
-        {{ form_end(formArtistView) }}
-    </section>
-
-    {# on affiche les messages flash dans le cas d'une insertion #}
-    {% for messages in app.flashes %}
-        {% for message in messages %}
-            {{ message }}
+        <p class="h3 list_title">Artiste</p>
+        {# on affiche les messages flash dans le cas d'une insertion #}
+        {% for messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-success message">{{ message }}</div>
+            {% endfor %}
         {% endfor %}
-    {% endfor %}
+        <div class="form_block">
+            {{ form_start(formArtistView) }}
+                <div class="form-group row">
+                    {{ form_label(formArtistView.category, 'Catégorie', {'label_attr': {'class': 'col-sm-2 col-form-label'}}) }}
+                    <div class="col-sm-10">{{ form_widget(formArtistView.category) }}</div>
+                </div>
+                <div class="form-group row">
+                    {{ form_label(formArtistView.name, 'Nom de l\'artiste', {'label_attr': {'class': 'col-sm-2 col-form-label'}}) }}
+                    <div class="col-sm-10">{{ form_widget(formArtistView.name) }}</div>
+                </div>
+                <div class="form-group row">
+                    {{ form_label(formArtistView.biography, 'Biographie', {'label_attr': {'class': 'col-sm-2 col-form-label'}}) }}
+                    <div class="col-sm-10">{{ form_widget(formArtistView.biography) }}</div>
+                </div>
+                {# cas d'un update #}
+                {# si artist.image est définie et qu'elle a une valeur, j'affiche l'image #}
+                {% if artist.image is defined %}
+                    {% if artist.image %}
+                        <div class="form-group row">
+                            <div class="col-sm-10 offset-2">
+                                <img src="{{ asset('assets/uploads/artists/' ~ artist.image) }}" alt="photo" height="80">
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
+                <div class="form-group row">
+                    {{ form_label(formArtistView.image, 'Image', {'label_attr': {'class': 'col-sm-2 col-form-label'}}) }}
+                    <div class="col-sm-7">{{ form_widget(formArtistView.image) }}</div>
+                </div>
+            {{ form_widget(formArtistView.Enregistrer) }}
+            {{ form_end(formArtistView) }}
+        </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/script.js') }}"></script>
 {% endblock %}

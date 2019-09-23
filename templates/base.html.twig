@@ -5,22 +5,27 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {% block title %}<title>Galerie LaPiscine</title>{% endblock %}
+    <title>{% block title %}{% endblock %}Galerie LaPiscine</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    {% block theatre %}{% endblock %}
+    {% block css %}{% endblock %}
     <link href="https://fonts.googleapis.com/css?family=Quicksand|Zhi+Mang+Xing&display=swap" rel="stylesheet">
     {# typo pour icone#}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+    {# <script> pour carrousel de la home page #}
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 </head>
 <body>
     {% include ('site/_header.html.twig') %}
-    <main>
+    <main style="min-height: calc(100vh - 400px)">
         {% block content %}{% endblock %}
     </main>
     {% include ('site/_footer.html.twig') %}
 
-    {% block js %}{% endblock %}
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    {% block js %}{% endblock %}
+    <script type="text/javascript" src="{{ asset('assets/js/script.js') }}"></script>
 </body>
 </html>

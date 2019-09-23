@@ -1,5 +1,16 @@
 {% extends 'admin/base_admin.html.twig' %}
 
+{% block nav %}{% endblock %}
 {% block content %}
-
+    <div class="home">
+        <div class="home_action">
+            <a class="home_link" href="{{ path('list_artists') }}">Artistes</a>
+        </div>
+        <div class="home_action">
+            <a class="home_link" href="{{ path('list_works') }}">Oeuvres d'art</a>
+        </div>
+        <div class="home_action">
+            <a class="home_link" href="{{ path('list_categories') }}">Categories</a>
+        </div>
+    </div>
 {% endblock %}

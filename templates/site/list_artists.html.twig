@@ -1,9 +1,33 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Les Artistes - {% endblock %}
 {% block content %}
     <section class="list_content">
-        <h1>Liste des artistes</h1>
-        <div class="list_artists">
+
+        {#### si une category est définie - page artist/category
+        ## personnalisation du titre de la page
+        ## le lien affiche tous les artistes de cette category
+        ## l'action du form se porte sur la route get_artists_bycategory pour une recherche par nom dans cette category
+        ## sinon je vais vers la route get_artists et je peux faire une recherche par nom de l'ensemble des artistes
+        #}
+        {%  if(page_category is defined) %}
+            <h1>Les {{ category }}</h1>
+            <a class="link_display_all" href="{{ path('get_artists_bycategory',{'id_category':id_category, 'category':category}) }}">Voir tous les {{ category }}</a> -
+            <a class="link_display_all" href="{{ path('get_artists') }}">Voir tous les artistes</a>
+            <form action="{{ path('get_artists_bycategory',{'id_category':id_category, 'category':category}) }}" method="get">
+        {% else %}
+            <h1>Les Artistes</h1>
+            <a class="link_display_all" href="{{ path('get_artists') }}">Voir tous les artistes</a>
+            <form action="{{ path('get_artists') }}" method="get">
+        {% endif %}
+
+            <div class="form-group" style="width: 300px;">
+                <input type="text" class="form-control-sm" size="25" name="search" placeholder="Rechercher un artiste">
+                <input class="btn btn-sm" type="submit" value="Envoyer">
+            </div>
+        </form>
+         {# s'il y a un résultat à la requête, j'affiche les artistes #}
+        {% if(display) %}
+            <div class="list_articles">
             {# liste les éléments du array artists #}
             {% for artist in artists %}
                 <article class="work_article">
@@ -21,5 +45,8 @@
                 </article>
             {% endfor %}
         </div>
+        {% else %}
+            Aucun artiste trouvé
+        {% endif %}
     </section>
 {% endblock %}

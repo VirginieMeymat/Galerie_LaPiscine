@@ -42,7 +42,6 @@ a:hover {
   color: #FFFFFF; }
 
 .nav {
-  width: 30%;
   margin-right: 5%; }
 
 .header_nav_ul {
@@ -53,14 +52,6 @@ a:hover {
   margin: 15px 0;
   padding: 0 15px; }
 
-.header_link {
-  color: #fff;
-  font-size: 17px; }
-
-.header_link:hover {
-  color: #FFFFFF;
-  text-decoration: underline; }
-
 .menu_burger {
   width: 30px;
   display: none;
@@ -69,24 +60,37 @@ a:hover {
   right: 20px;
   cursor: pointer; }
 
+.header_nav_ul li {
+  margin-left: 20px; }
+
+.header_link {
+  color: #FFFFFF;
+  font-size: 17px; }
+
+.header_link:hover {
+  color: #e00000;
+  text-decoration: underline; }
+
 .menu_artists {
   position: relative; }
 
 .menu_categories {
-  /*display:none;*/
+  display: none;
   position: absolute;
   top: 30px;
-  left: -15px;
+  left: -18px;
   z-index: 10;
   list-style: none;
-  padding: 5px 10px 5px 15px;
-  background-color: #fff; }
+  padding: 5px 15px 5px 0;
+  background-color: #fff;
+  box-shadow: 2px 2px 5px gray; }
 
 .menu_categories a {
   color: #212529; }
 
 .menu_categories a:hover {
-  text-decoration: underline; }
+  text-decoration: underline;
+  color: #e00000; }
 
 .burger_line {
   width: 100%;
@@ -95,15 +99,20 @@ a:hover {
   margin-bottom: 6px; }
 
 @media screen and (max-width: 640px) {
+  /* gestion du menu burger */
   .logo {
-    width: 55%; }
+    width: 50%;
+    font-size: 38px;
+    line-height: 100%; }
 
   .nav {
-    display: none; }
+    display: none;
+    width: 200px;
+    margin-right: 0; }
 
   .header_nav_ul {
     flex-direction: column;
-    line-height: 170%; }
+    line-height: 140%; }
 
   .menu_burger {
     display: block; }
@@ -127,34 +136,62 @@ a:hover {
   width: 60%;
   margin: 50px auto; }
 
-.list_content {
-  width: 60%;
-  margin: 0 auto; }
+@media screen and (max-width: 480px) {
+  #carouselHome {
+    height: 140px; }
 
-.card_artist, .works_artist, .list_artists, .card_work {
-  width: 60%;
+  .home {
+    width: 90%;
+    font-size: 14px; } }
+.list_content {
+  width: 80%;
+  margin: 20px auto; }
+
+.card_artist, .works_artist, .list_articles, .card_work {
+  width: 80%;
   margin: 20px auto;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap; }
 
 .card_work {
-  width: 50%;
-  justify-content: left; }
+  width: 70%;
+  justify-content: flex-start; }
 
-.list_artists {
-  width: 100%; }
+.card_content {
+  margin: 0 auto; }
+
+.list_articles, .works_artist {
+  width: 100%;
+  justify-content: flex-start; }
 
 .card_artist {
-  width: 50%;
-  margin-bottom: 150px; }
+  width: 70%;
+  margin-bottom: 80px;
+  justify-content: flex-start; }
 
 .work_article {
+  width: 350px;
   text-align: center;
   margin-bottom: 40px; }
 
+.work_link_artist {
+  color: #212529; }
+
+.work_link_artist:hover {
+  text-decoration: underline; }
+
 .info_artist {
-  width: 70%; }
+  width: 70%;
+  padding-left: 20px;
+  font-size: 14px; }
+
+.info_artist span {
+  font-size: 18px; }
+
+.info_work {
+  width: 40%;
+  padding-left: 10px; }
 
 .info_work i {
   font-size: 1.6em; }
@@ -176,7 +213,8 @@ a:hover {
   width: 320px;
   height: 320px;
   overflow: hidden;
-  position: relative; }
+  position: relative;
+  margin: 0 auto; }
 
 .image_card_work {
   width: 460px;
@@ -205,7 +243,14 @@ a:hover {
   right: -600px;
   bottom: -600px; }
 
+.link_display_all {
+  color: #000; }
+
+.link_display_all:hover {
+  color: #e00000; }
+
 .lien_contact {
+  width: 270px;
   padding: 8px;
   border: 1px solid #dedede; }
 
@@ -214,22 +259,62 @@ a:hover {
   color: #FFFFFF;
   cursor: pointer; }
 
+@media screen and (max-width: 480px) {
+  .list_content {
+    width: 90%; }
+
+  .works_artist {
+    width: 100%; }
+
+  .card_artist {
+    width: 80%; }
+
+  .card_work {
+    width: 90%; }
+
+  .work_article {
+    width: 300px; }
+
+  .image_work {
+    width: 280px;
+    height: 280px; }
+
+  .image_card_work {
+    width: 360px;
+    height: 360px; }
+
+  .info_artist {
+    width: 90%; }
+
+  .info_work {
+    width: 100%;
+    padding: 0; } }
 /* Page exposition */
 #myGallery {
   visibility: hidden;
   text-align: center;
-  width: 60%;
+  width: 70%;
   height: 400px;
   margin: 40px auto; }
 
+@media screen and (max-width: 480px) {
+  #myGallery {
+    width: 90%;
+    height: 200px; } }
 .legal_notice {
   width: 70%;
-  margin: 0 auto; }
+  margin: 40px auto; }
 
+@media screen and (max-width: 480px) {
+  .legal_notice {
+    width: 90%; } }
 /*** Contact ***/
 .form_contact {
   width: 40%;
-  margin: 0 auto; }
+  margin: 40px auto; }
+
+.bt_contact {
+  margin-top: 10px; }
 
 @media screen and (max-width: 560px) {
   .form_contact {
@@ -274,5 +359,14 @@ a:hover {
 
 .social i {
   font-size: 1.5em; }
+
+/*
+@media screen and (max-width: 480px){
+  .info_ul_galerie{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}*/
 
 /*# sourceMappingURL=main.css.map */

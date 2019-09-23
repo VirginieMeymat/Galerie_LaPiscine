@@ -2,7 +2,7 @@
     <div class="info">
         <h4>Informations</h4>
         <ul>
-            <li><a class="text-light" href="#">Contactez-nous</a></li>
+            <li><a class="text-light" href="{{ path('contact_form') }}">Contactez-nous</a></li>
             <li><a class="text-light" href="{{ path('legal_notice') }}">Mention légales</a></li>
         </ul>
     </div>
@@ -10,7 +10,7 @@
     {# utilisation de bootstrap avec la Font Awesome pour les icones #}
     <div class="info">
         <h4>La galerie</h4>
-        <ul>
+        <ul class="info_ul_galerie">
             <li><div class="icon text-center"><i class="fa fa-map-marker text-muted"></i></div> LaPiscine, 588 Cours de la Libération, 33400 Talence</li>
             <li><div class="icon text-center"><i class="fa fa-map-marker text-muted"></i></div> <a class="text-light" href="https://www.google.fr/maps/place/La+Piscine/@44.7994294,-0.5996293,17z/data=!3m1!4b1!4m5!3m4!1s0xd552845733eb33f:0x2bf918c8dee4ccff!8m2!3d44.7994294!4d-0.5974406" target="_blank">Plan d'accès</a></li>
             <li><div class="icon text-center"><i class="fa fa-phone text-muted"></i></div> +33 (0)5 35 54 95 07</li>
@@ -22,8 +22,10 @@
         <div class="info">
             <h4>Lettre d'informations</h4>
             <form action="" method="post">
-                <input type="text" placeholder="Saisissez votre adresse e-mail">
-                <input type="submit" value="Valider">
+                <div class="form-group">
+                <input type="text" class="form-control-sm" name="newsletter" size="30" placeholder="Saisissez votre adresse e-mail">
+                <input type="submit" class="btn btn-sm" value="Valider">
+                </div>
             </form>
         </div>
         <br>

@@ -3,11 +3,37 @@
   box-sizing: border-box; }
 
 #content {
-  width: 60%;
+  width: 80%;
   margin: 20px auto;
   display: flex;
   justify-content: space-between;
   position: relative; }
+
+.home {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 60px auto; }
+
+.home_action {
+  width: 200px;
+  height: 50px;
+  text-align: center;
+  background-color: #e00000;
+  color: #FFFFFF;
+  padding-top: 10px; }
+
+.home_link {
+  color: #FFFFFF;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 28px; }
+
+.home_link:hover {
+  color: #FFFFFF;
+  font-size: 24px;
+  text-decoration: none; }
 
 .nav {
   background-color: #f0eb85;
@@ -56,5 +82,11 @@
 
 .pagination span {
   margin-left: 5px; }
+
+.message {
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  z-index: 10; }
 
 /*# sourceMappingURL=admin.css.map */

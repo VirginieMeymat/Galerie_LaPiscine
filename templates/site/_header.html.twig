@@ -10,16 +10,16 @@
     <nav class="nav">
         <ul class="header_nav_ul">
             <li><a class="header_link" href="{{ path('home_page') }}">Accueil</a></li>
-            <li><a class="header_link" href="{{ path('show_exhibition') }}">Exposition</a></li>
-            <li><a class="header_link" href="{{ path('get_works') }}">Oeuvres</a></li>
+            <li><a class="header_link" href="{{ path('show_exhibition') }}">L'Exposition</a></li>
+            <li><a class="header_link" href="{{ path('get_works') }}">Les Oeuvres</a></li>
             <li class="menu_artists">
-                <a class="header_link" href="{{ path('get_artists') }}">Artistes</a>
+                <a class="header_link" href="{{ path('get_artists') }}">Les Artistes</a>
+                {# affichage du menu des catégories d'artiste par jquery #}
                 <ul class="menu_categories">
-                    {# affichage des catégories d'artiste disponibles #}
-                    <li><a href="{{ path('get_artists',{'category':'1'}) }}">Peintres</a></li>
-                    <li><a href="{{ path('get_artists',{'category':'2'}) }}">Sculpteurs</a></li>
-                    <li><a href="{{ path('get_artists',{'category':'3'}) }}">Photographes</a></li>
-                    <li><a href="{{ path('get_artists',{'category':'4'}) }}">Plasticiens</a></li>
+                    <li><a href="{{ path('get_artists_bycategory',{'id_category':'1', 'category':'Peintres'}) }}">Peintres</a></li>
+                    <li><a href="{{ path('get_artists_bycategory',{'id_category':'2', 'category':'Sculteurs'}) }}">Sculpteurs</a></li>
+                    <li><a href="{{ path('get_artists_bycategory',{'id_category':'3', 'category':'Photographes'}) }}">Photographes</a></li>
+                    <li><a href="{{ path('get_artists_bycategory',{'id_category':'4', 'category':'Plasticiens'}) }}">Plasticiens</a></li>
                     {#{% for category in categories %}
                         <li><a href="{{ path('get_artists',{'category':category.id}) }}">category.title</a></li>
                     {% endfor %}#}

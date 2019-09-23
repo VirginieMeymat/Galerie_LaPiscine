@@ -25,6 +25,7 @@
   margin-bottom: 6px;
   display: flex;
 }
+
 /* div contenant les icones d'info sur la galerie */
 .icon {
   width: 24px;
@@ -41,3 +42,12 @@
 .social i {
   font-size: 1.5em;
 }
+
+/*
+@media screen and (max-width: 480px){
+  .info_ul_galerie{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}*/

@@ -4,6 +4,12 @@
 {% block content %}
     <section class="form_section">
         <p class="h3 list_title">Oeuvre d'art</p>
+        {# on affiche les messages flash dans le cas d'une insertion #}
+        {% for messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-success message">{{ message }}</div>
+            {% endfor %}
+        {% endfor %}
         <div class="form_block">
             {{ form_start(formWorkView) }}
                 <div class="form-group row">
@@ -47,11 +53,6 @@
             {{ form_end(formWorkView) }}
         </div>
     </section>
-
-    {# on affiche les messages flash dans le cas d'une insertion #}
-    {% for messages in app.flashes %}
-        {% for message in messages %}
-            {{ message }}
-        {% endfor %}
-    {% endfor %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/script.js') }}"></script>
 {% endblock %}

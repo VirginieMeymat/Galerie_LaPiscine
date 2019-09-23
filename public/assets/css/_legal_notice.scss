@@ -1,4 +1,10 @@
 .legal_notice {
   width: 70%;
-  margin: 0 auto;
+  margin: 40px auto;
+}
+
+@media screen and(max-width: 480px){
+  .legal_notice{
+    width: 90%;
+  }
 }

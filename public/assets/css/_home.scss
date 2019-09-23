@@ -12,3 +12,13 @@
   width: 60%;
   margin: 50px auto;
 }
+
+@media screen and(max-width: 480px){
+  #carouselHome{
+    height: 140px;
+  }
+  .home{
+    width: 90%;
+    font-size: 14px;
+  }
+}

@@ -1,31 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}<title>Exposition - Galerie LaPiscine</title>{% endblock %}
+{% block title %}L'Exposition - {% endblock %}
 
-{% block theatre %}
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript" ></script>
+{% block css %}
     <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/theatre.css') }}" />
-    <script type="text/javascript" src="{{ asset('assets/js/jquery.theatre.min.js') }}"></script>
 {% endblock %}
 
 {% block content %}
-        <div id="myGallery" style="visibility: hidden; text-align: center; width: 60%; height: 400px;">
-        <a href="{{ path('card_work',{'id':'1'}) }}"><img src="{{ asset('assets/uploads/works/apresmididautomne.jpg') }}" style="height: 1px;"/></a>
-        <img src="{{ asset('assets/uploads/works/cabanetchanquee.jpg') }}" style="height: 1px;"/>
-        <img src="{{ asset('assets/uploads/works/pinmarin.png') }}" style="height: 1px;"/>
-        <img src="{{ asset('assets/uploads/works/apresmididautomne.jpg') }}" style="height: 1px;"/>
-        <img src="{{ asset('assets/uploads/works/cabanetchanquee.jpg') }}" style="height: 1px;"/>
-        <img src="{{ asset('assets/uploads/works/pinmarin.png') }}" style="height: 1px;"/>
-        <img src="{{ asset('assets/uploads/works/apresmididautomne.jpg') }}" style="height: 1px;"/>
-        <img src="{{ asset('assets/uploads/works/cabanetchanquee.jpg') }}" style="height: 1px;"/>
-        <img src="{{ asset('assets/uploads/works/pinmarin.png') }}" style="height: 1px;"/>
-        <img src="{{ asset('assets/uploads/works/apresmididautomne.jpg') }}" style="height: 1px;"/>
-        <img src="{{ asset('assets/uploads/works/cabanetchanquee.jpg') }}" style="height: 1px;"/>
-        <img src="{{ asset('assets/uploads/works/pinmarin.png') }}" style="height: 1px;"/>
+        <div id="myGallery">
+            <a href="{{ path('card_work',{'id':'1'}) }}"><img src="{{ asset('assets/uploads/works/apresmididautomne.jpg') }}" style="height: 1px;"/></a>
+            <a href="{{ path('card_work',{'id':'2'}) }}"><img src="{{ asset('assets/uploads/works/cabanetchanquee.jpg') }}" style="height: 1px;"/></a>
+            <a href="{{ path('card_work',{'id':'3'}) }}"><img src="{{ asset('assets/uploads/works/pinmarin.png') }}" style="height: 1px;"/></a>
+            <a href="{{ path('card_work',{'id':'10'}) }}"><img src="{{ asset('assets/uploads/works/alloquoi.jpg') }}" style="height: 1px;"/></a>
+            <a href="{{ path('card_work',{'id':'11'}) }}"><img src="{{ asset('assets/uploads/works/pinassesduo177178jpg.png') }}" style="height: 1px;"/></a>
+            <a href="{{ path('card_work',{'id':'22'}) }}"><img src="{{ asset('assets/uploads/works/baigneusesazur.jpg') }}" style="height: 1px;"/></a>
+            <a href="{{ path('card_work',{'id':'15'}) }}"><img src="{{ asset('assets/uploads/works/leschatsbleus.jpg') }}" style="height: 1px;"/></a>
+            <a href="{{ path('card_work',{'id':'16'}) }}"><img src="{{ asset('assets/uploads/works/coqueloicotsbeige.png') }}" style="height: 1px;"/></a>
+            <a href="{{ path('card_work',{'id':'17'}) }}"><img src="{{ asset('assets/uploads/works/tempete.png') }}" style="height: 1px;"/></a>
+            <a href="{{ path('card_work',{'id':'18'}) }}"><img src="{{ asset('assets/uploads/works/unpeutencacherunautre.jpg') }}" style="height: 1px;"/></a>
+            <a href="{{ path('card_work',{'id':'19'}) }}"><img src="{{ asset('assets/uploads/works/unpeutencacherunautre2.jpg') }}" style="height: 1px;"/></a>
+            <a href="{{ path('card_work',{'id':'22'}) }}"><img src="{{ asset('assets/uploads/works/baigneusesazur.jpg') }}" style="height: 1px;"/></a>
 
     </div>
 {% endblock %}
 
 {% block js %}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript" ></script>
+    <script type="text/javascript" src="{{ asset('assets/js/jquery.theatre.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/theatre.js') }}"></script>
 {% endblock %}

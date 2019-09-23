@@ -1,27 +1,29 @@
 {# Fiche artiste #}
 
 {% extends 'base.html.twig' %}
-{% block title %}<title>{{ artist.name }} - Galerie LaPiscine</title>{% endblock %}
+{% block title %}{{ artist.name }} - {% endblock %}
 {% block content %}
     <section class="card_artist">
         <div class="image_artist">
             <img src="{{ asset('assets/uploads/artists/' ~ artist.image) }}" alt="photo">
         </div>
-        <div class="info_artist" style="padding-left:20px">
-            {{ artist.name }}<br>
+        <div class="info_artist">
+            <span>{{ artist.name }}</span><br>
             {{ artist.biography }}
         </div>
     </section>
-    <section class="works_artist">
+    <section class="list_content">
+        <div class="list_articles">
         {% for work in artist.works %}
-            <a href="{{ path('card_work', {'id':work.id}) }}">
-                <article class="work_article">
-                    {{ work.title }}
-                    <div class="image_work">
-                        <img src="{{ asset('assets/uploads/works/' ~ work.image) }}" alt="photo">
-                    </div>
-                </article>
-            </a>
+            <article class="work_article">
+                <a href="{{ path('card_work', {'id':work.id}) }}">
+                <h3>{{ work.title }}</h3>
+                <div class="image_work">
+                    <img src="{{ asset('assets/uploads/works/' ~ work.image) }}" alt="photo">
+                </div>
+                </a>
+            </article>
         {% endfor %}
+        </div>
     </section>
 {% endblock %}

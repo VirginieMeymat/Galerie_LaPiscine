@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Artist;
+use App\Entity\Work;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -19,13 +20,37 @@ class ArtistRepository extends ServiceEntityRepository
         parent::__construct($registry, Artist::class);
     }
 
-    public function findByName($name)
+    public function findByName($name, $category = 'all')
+    {
+        if($category == 'all'){
+            return $this->createQueryBuilder('a')
+                ->where('a.name LIKE :name')
+                ->setParameter('name', '%'.$name.'%')
+                ->orderBy('a.name', 'ASC')
+                ->getQuery()
+                ->getResult();
+        }
+        else{
+            return $this->createQueryBuilder('a')
+                ->where('a.name LIKE :name')
+                ->andWhere('a.category = :category')
+                ->setParameter('name', '%'.$name.'%')
+                ->setParameter('category', $category)
+                ->orderBy('a.name', 'ASC')
+                ->getQuery()
+                ->getResult();
+        }
+
+    }
+
+    public function findByCategory($id_category)
     {
         return $this->createQueryBuilder('a')
-            ->where('a.name LIKE :name')
-            ->setParameter('name', '%'.$name.'%')
+            ->where('a.category = :category')
+            ->setParameter('category', $id_category)
+            ->orderBy('a.name', 'ASC')
             ->getQuery()
-            ->getArrayResult();
+            ->getResult();
     }
     // /**
     //  * @return Artist[] Returns an array of Artiste objects

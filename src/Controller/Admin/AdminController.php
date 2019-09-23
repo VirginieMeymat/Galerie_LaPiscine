@@ -102,4 +102,12 @@ class AdminController extends AbstractController
             ]
         );
     }
+
+    /**
+     * @Route("/admin/test", name="test_jquery")
+     */
+    public function testJquery()
+    {
+        return $this -> render('admin/test.html.twig');
+    }
 }
